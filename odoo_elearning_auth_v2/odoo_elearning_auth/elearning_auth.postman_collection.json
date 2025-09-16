@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "b9d1e3e3-b021-46f9-8f58-8b84504176ab",
+		"name": "eLearning Auth API Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2586111"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"stud37463\",\n    \"last_name\": \"224api6\",\n    \"username\": \"stud37463224api6@yopmail.com\",\n    \"email\": \"stud37463224api6@yopmail.com\",\n    \"phone\": \"+923001234567\",\n    \"password\": \"password\",\n    \"confirm_password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"magentousertaf2@yopmail.com\",\"otp\":\"168711\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/verify_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"verify_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"magentousertaf2@yopmail.com\",\"password\":\"password\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8069/api/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"stud37463224api4@yopmail.com\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/forgotPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"stud37463224api4@yopmail.com\",\"otp\":\"653731\",\"password\":\"Greens@3211\",\"confirm_password\":\"Greens@3211\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/resetPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course",
+			"item": [
+				{
+					"name": "all courses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"stud37463224api4@yopmail.com\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"stud37463224api4@yopmail.com\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/course/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"course",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

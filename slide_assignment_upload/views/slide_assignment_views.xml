@@ -1,0 +1,74 @@
+<odoo>
+    <record id="view_slide_assignment_tree" model="ir.ui.view">
+        <field name="name">slide.assignment.tree</field>
+        <field name="model">slide.assignment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="slide_id"/>
+                <field name="user_id"/>
+                <field name="filename"/>
+                <field name="points"/>
+                <field name="submitted_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_slide_assignment_form" model="ir.ui.view">
+        <field name="name">slide.assignment.form</field>
+        <field name="model">slide.assignment</field>
+        <field name="arch" type="xml">
+            <form string="Slide Assignment">
+                <sheet>
+                    <group>
+                        <field name="slide_id"/>
+                        <field name="user_id"/>
+                        <field name="document" filename="filename"/>
+                        <field name="points"/>
+                        <field name="submitted_date" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_slide_assignment" model="ir.actions.act_window">
+        <field name="name">Slide Assignments</field>
+        <field name="res_model">slide.assignment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_slide_form_inherit_assignment" model="ir.ui.view">
+        <field name="name">slide.slide.form.assignment</field>
+        <field name="model">slide.slide</field>
+        <field name="inherit_id" ref="website_slides.view_slide_slide_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Assignments">
+                    <field name="assignment_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="points"/>
+                            <field name="submitted_date" invisible="1"/>
+                            <field name="user_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="User Submissions">
+                    <field name="assignment_submission_ids">
+                        <tree editable="bottom">
+                            <field name="user_id"/>
+                            <field name="user_email" readonly="1"/>
+                            <field name="filename"/>
+                            <field name="file_data" filename="filename"/>
+                            <field name="karma"/>
+                            <field name="points"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_slide_assignment_root" name="Slide Assignments" sequence="50"/>
+    <menuitem id="menu_slide_assignment" name="Submissions" parent="menu_slide_assignment_root" action="action_slide_assignment" sequence="1"/>
+</odoo>

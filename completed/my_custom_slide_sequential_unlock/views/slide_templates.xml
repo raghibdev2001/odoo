@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="course_slides_list_slide_inherit" inherit_id="website_slides.course_slides_list_slide">
+        <xpath expr="//div[contains(@class, 'text-truncate')]" position="replace">
+            <t t-if="slide._check_previous_slide_completed_2(user)">
+                <a t-att-href="slide.website_url" class="o_wslides_js_slides_list_slide_link">
+                    <t t-esc="slide.name"/>
+                </a>
+            </t>
+            <t t-if="not slide._check_previous_slide_completed_2(user)">
+                <span class="disabled">
+                    <t t-esc="slide.name"/>
+                </span>
+            </t>
+        </xpath>        
+    </template>
+</odoo>

@@ -1,0 +1,120 @@
+<odoo>
+    <template id="report_payslip_urdu">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <style>
+                            @font-face {
+                                font-family: 'Noto Nastaliq Urdu';
+                                src: url('/usr/share/fonts/truetype/urdu/static/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+                            }
+                            body {
+                                font-family: 'Noto Nastaliq Urdu', 'DejaVu Sans', sans-serif;
+                                direction: rtl;
+                                text-align: right;
+                                font-size: 14px;
+                                line-height: 1.8;
+                            }
+                            .urdu2-font {
+                                font-family: 'Noto Nastaliq Urdu', 'DejaVu Sans', sans-serif;
+                                direction: rtl;
+                                text-align: right;
+                            }
+                            td, th {
+                                font-family: 'Noto Nastaliq Urdu', 'DejaVu Sans', sans-serif !important;
+                            }
+                        </style>
+
+
+
+                    <div class="page urdu2-font" style="direction: rtl; text-align: right;">
+                        <h2 style="text-align: center;">تنخواہ سلپ</h2>
+                        <!-- Add this line immediately after the header -->
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 25%;"><strong>حوالہ نام</strong></td>
+                                <td colspan="3" style="word-wrap: break-word; text-align: right;">
+                                    <span class="urdu-font" t-esc="translations.get(o.id).get('o_name', '')"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <tr>
+                                <td style="width: 20%;"><strong>نام</strong></td>
+                                <td style="width: 30%; word-wrap: break-word;">
+                                    <span t-esc="translations.get(o.id).get('name', '')"/>
+                                </td>
+                                <td style="width: 20%;"><strong>عہدہ</strong></td>
+                                <td style="width: 30%; word-wrap: break-word;">
+                                    <span t-esc="translations.get(o.id).get('designation', '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>ای میل</strong></td>
+                                <td style="word-wrap: break-word;">
+                                    <span t-esc="translations.get(o.id).get('email', '')"/>
+                                </td>
+                                <td><strong>شناختی نمبر</strong></td>
+                                <td style="word-wrap: break-word;">
+                                    <span t-esc="translations.get(o.id).get('identification_id', '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>حوالہ</strong></td>
+                                <td style="word-wrap: break-word;">
+                                    <span t-esc="translations.get(o.id).get('number', '')"/>
+                                </td>
+                                <td><strong>بینک اکاؤنٹ</strong></td>
+                                <td style="word-wrap: break-word;">
+                                    <span t-esc="translations.get(o.id).get('acc_number', '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>تاریخ سے</strong></td>
+                                <td >
+                                    <span t-esc="translations.get(o.id).get('date_from', '')"/>
+                                </td>
+                                <td><strong>تاریخ تک</strong></td>
+                                <td>
+                                    <span t-esc="translations.get(o.id).get('date_to', '')"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm" style="width: 100%; margin-top: 20px;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">کوڈ</th>
+                                    <th style="width: 35%;">نام</th>
+                                    <th style="width: 15%;">مقدار/شرح</th>
+                                    <th style="width: 20%;">رقم</th>
+                                    <th style="width: 15%;">کل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="payslips_lines.get(o.id, [])" t-as="line">
+                                    <td><span t-esc="line.get('code', '')"/></td>
+                                    <td><span t-esc="line.get('name', '')"/></td>
+                                    <td><span t-esc="line.get('quantity', '')"/></td>
+                                    <td>
+                                        <span t-esc="line.get('amount', 0.0)"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line.get('total', 0.0)"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <p class="text-right" style="margin-top: 20px;">
+                            <strong>منظور شدہ دستخط</strong>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

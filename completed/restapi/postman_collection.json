@@ -1,0 +1,154 @@
+{
+  "info": {
+    "name": "Odoo eLearning Mobile API",
+    "_postman_id": "odoo-elearning-api",
+    "description": "API collection for mobile app integration with Odoo 17 eLearning",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"test123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/signup",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "signup"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Signin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"test123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/signin",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "signin"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Courses",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/courses",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "courses"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Course Detail",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/course/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "course",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upload Assignment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{jwt_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "slide_id",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "assignment",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/upload_assignment",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "upload_assignment"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8069"
+    },
+    {
+      "key": "jwt_token",
+      "value": ""
+    }
+  ]
+}

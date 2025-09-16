@@ -1,0 +1,19 @@
+<odoo>
+    <!-- Inherit the slide_content_detailed template to add the assignment section -->
+    <template id="slide_view_detailed_inherit" inherit_id="website_slides.slide_content_detailed">
+        <xpath expr="//div[@id='quiz_container']" position="before">
+            <t t-if="slide.assignment_ids">
+                <div class="alert alert-info mt-3">
+                    <p><strong>Assignment:</strong></p>
+                    <t t-foreach="slide.assignment_ids" t-as="assignment">
+                        <p><t t-esc="assignment.name"/></p>
+                        <form t-attf-action="/submit/assignment/{{ slide.id }}" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" class="form-control my-2"/>
+                            <button type="submit" class="btn btn-primary">Upload Assignment</button>
+                        </form>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

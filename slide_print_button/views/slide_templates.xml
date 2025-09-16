@@ -1,0 +1,7 @@
+<odoo>
+  <template inherit_id="website_slides.slide_fullscreen" id="slide_fullscreen_print_inherit"  priority="30">
+    <xpath expr="//div[contains(@class, 'o_wslides_fs_container')]" position="inside">
+      <!-- Print Button gets dynamically injected by JS -->
+    </xpath>
+  </template>
+</odoo>

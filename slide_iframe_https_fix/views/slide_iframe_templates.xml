@@ -1,0 +1,17 @@
+<odoo>
+    <!-- Fullscreen viewer -->
+    <template id="slide_iframe_https_fix_fullscreen" inherit_id="website_slides.slide_fullscreen">
+        <xpath expr="//*[@t-att-data-embed-code]" position="attributes">
+            <attribute name="t-att-data-embed-code">
+                (slide.embed_code.replace('http:', 'https:')) if slide.slide_category in ['video', 'document', 'infographic'] else False
+            </attribute>
+        </xpath>
+    </template>
+
+    <!-- Embedded viewer -->
+    <template id="slide_iframe_https_fix_embed" inherit_id="website_slides.embed_slide">
+        <xpath expr="//t[@t-out='slide.embed_code']" position="replace">
+            <t t-out="slide.embed_code.replace('http:', 'https:')"/>
+        </xpath>
+    </template>
+</odoo>

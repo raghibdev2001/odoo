@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="slide_fullscreen_inherit" inherit_id="website_slides.slide_fullscreen">
+        <xpath expr="//ul[@id='sidebar_slide_list']//a" position="attributes">
+            <attribute name="t-attf-class">
+                list-group-item list-group-item-action d-flex justify-content-between align-items-start
+                #{' disabled text-muted' if not slide_access_map.get(slide.id) else ''}
+            </attribute>
+            <attribute name="t-att-href">
+                #{'/slides/slide/%s?fullscreen=1' % slide.id if slide_access_map.get(slide.id) else 'javascript:void(0);'}
+            </attribute>
+        </xpath>
+    </template>
+</odoo>

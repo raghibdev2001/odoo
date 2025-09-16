@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="course_slides_list_slide_xp_inherit" inherit_id="website_slides.course_slides_list_slide" priority="20">
+    <xpath expr="//div[contains(@class, 'o_wslides_slides_list_slide_controls')]" position="before">
+      <div class="d-flex flex-row o_not_editable align-items-center">
+        <t t-if="slide.total_assignment_xp">
+          <span class="badge fw-bold px-2 py-1 m-1 text-bg-primary">
+            <i class="fa fa-fw fa-star"></i>
+            <t t-esc="slide.total_assignment_xp"/> XP (Assignment)
+          </span>
+        </t>
+      </div>
+    </xpath>
+  </template>
+</odoo>

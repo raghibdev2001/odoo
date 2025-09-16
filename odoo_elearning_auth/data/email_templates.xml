@@ -1,0 +1,18 @@
+<odoo>
+  <data noupdate="1">
+    <record id="template_auth_otp" model="mail.template">
+      <field name="name">Auth OTP Email</field>
+      <field name="model_id" ref="odoo_elearning_auth.model_auth_otp_log" />
+      <field name="subject">Your OTP Code</field>
+      <field name="email_from">kashan.tech.io@gmail.com</field>
+      <field name="email_to">${object.user_id.email}</field>
+      <field name="body_html">
+        <![CDATA[
+          <p>Hello <t t-out="object.user_id.name"/>,</p>
+          <p>Your OTP code is <strong><t t-out="object.otp"/></strong>.</p>
+          <p>It will expire in 10 minutes.</p>
+        ]]>
+      </field>
+    </record>
+  </data>
+</odoo>

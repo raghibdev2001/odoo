@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="quiz_import_root" name="Quiz Import"/>
+    <menuitem id="quiz_import_menu" name="Import Quizzes" parent="quiz_import_root" action="action_quiz_import" sequence="50" />
+</odoo>

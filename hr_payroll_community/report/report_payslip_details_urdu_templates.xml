@@ -1,0 +1,141 @@
+<odoo>
+    <template id="report_payslip_details_urdu">
+        <t t-call="web.html_container">
+            <t t-set="stylesheet" t-value="'/om_hr_payroll/static/src/css/report.css'"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page urdu2-font" style="direction: rtl; text-align: right;">
+                        <h2 style="text-align: center;">تنخواہ سلپ</h2>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>نام</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="translations.get(o.id, {}).get('name', '')"/>
+                                </td>
+                                <td>
+                                    <strong>عہدہ</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="translations.get(o.id, {}).get('designation', '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>ای میل</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="translations.get(o.id, {}).get('email', '')"/>
+                                </td>
+                                <td>
+                                    <strong>شناختی نمبر</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="translations.get(o.id, {}).get('identification_id', '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>حوالہ</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="translations.get(o.id, {}).get('number', '')"/>
+                                </td>
+                                <td>
+                                    <strong>بینک اکاؤنٹ</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="translations.get(o.id, {}).get('acc_number', '')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>تاریخ سے</strong>
+                                </td>
+                                <td>
+                                    <span>
+                                        <span t-esc="translations.get(o.id, {}).get('date_from', '')"/>
+                                    </span>
+
+                                </td>
+                                <td>
+                                    <strong>تاریخ تک</strong>
+                                </td>
+                                <td>
+                                    <span >
+                                        <span t-esc="translations.get(o.id, {}).get('date_to', '')"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h3>تنخواہ کی قسطوں کی تفصیلات حسب زمرہ</h3>
+                        <table class="table table-sm mb32">
+                            <thead>
+                                <tr>
+                                    <th>کوڈ</th>
+                                    <th>تنخواہ کے اصول کا زمرہ</th>
+                                    <th>کل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="get_details_by_rule_category.get(o.id, [])" t-as="h">
+                                    <td>
+                                        <span t-esc="h['code']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="'..'*h['level']"/>
+                                        <span t-esc="h['rule_category']"/>
+                                    </td>
+<!--                                    <td class="text-right">-->
+<!--                                        <span t-esc="h['total']"-->
+<!--                                              t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>-->
+<!--                                    </td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>شراکت رجسٹر کے مطابق پے سلپ لائنیں</h3>
+                        <table class="table table-sm mt32">
+                            <thead>
+                                <tr>
+                                    <th>کوڈ</th>
+                                    <th>نام</th>
+                                    <th>مقدار/شرح</th>
+                                    <th>رقم</th>
+                                    <th>کل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="get_lines_by_contribution_register.get(o.id, [])" t-as="p">
+                                    <td>
+                                        <span t-esc="p.get('code', '')"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="p.get('name', '')"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="p.get('quantity', '')"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="p.get('amount', 0)"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="p.get('total', 0)"
+                                              t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="text-right">
+                            <strong>مجاز دستخط</strong>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

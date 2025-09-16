@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_quiz_import_wizard,access.quiz.import.wizard,model_quiz_import_wizard,,1,1,1,1
+access_course_section_admin,access_course_section_admin,model_course_section,,1,1,1,1
+access_quiz_quiz,access_quiz_quiz,model_quiz_quiz,base.group_user,1,1,1,1
+access_quiz_answer,access_quiz_answer,model_quiz_answer,base.group_user,1,1,1,1

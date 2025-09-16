@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_slide_channel_inherit" model="ir.ui.view">
+        <field name="name">slide.channel.inherit</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.view_slide_channel_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='slide_ids']" position="after">
+                <field name="section_ids"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
