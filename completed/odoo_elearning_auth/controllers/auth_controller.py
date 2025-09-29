@@ -109,31 +109,15 @@ class AuthController(http.Controller):
 
         # Send OTP Email
         try:
-            # template = request.env.ref('odoo_elearning_auth.template_auth_otp')
-            # if template:
-            #     template.sudo().send_mail(
-            #         email_log.id,
-            #         force_send=True,
-            #         email_values={'email_to': email}
-            #     )
-            #     _logger.info("OTP email sent to %s", user.email)
-            #     _logger.info("Created user %s and sent OTP", user.email)
-
-            mail_values = {
-                'subject': "Signup - OTP Code",
-                'body_html': f"<p>Hello,</p><p>Your OTP code is: <b>{otp}</b></p>",
-                'email_to': email,
-                'email_from': user.email or "no-reply@greenedtech.com",
-            }
-            mail = request.env['mail.mail'].sudo().create(mail_values)
-            mail.sudo().send()
-
-            _logger.info("OTP email sent directly to %s", email)
-            return {'status': 'success', 'message': otp}
-        
-        except Exception as e:
-            _logger.error("Error sending OTP: %s", str(e))
-            return {"status": "error", "message": "Failed to send OTP"}
+            template = request.env.ref('odoo_elearning_auth.template_auth_otp')
+            if template:
+                template.sudo().send_mail(
+                    email_log.id,
+                    force_send=True,
+                    email_values={'email_to': email}
+                )
+                _logger.info("OTP email sent to %s", user.email)
+                _logger.info("Created user %s and sent OTP", user.email)
                 
                 # Create OTP log (sms placeholder)
                 # sms_log = request.env['auth.otp.log'].sudo().create({
@@ -144,14 +128,14 @@ class AuthController(http.Controller):
                 # })
                 # send_sms(user.phone, f"Your OTP code is {otp}")   # implement later
 		
+                return {'status': 'success', 'message': otp}
             
-            
-            # else:
-            #     _logger.error("OTP email template not found!")
-            #     return {'status': 'success', 'message': "User created but OTP email template missing."}
-        # except Exception as e:
-        #     _logger.error("Failed to send OTP email: %s", str(e))
-        #     return {"status": "error", "message": "User created but OTP email failed."}
+            else:
+                _logger.error("OTP email template not found!")
+                return {'status': 'success', 'message': "User created but OTP email template missing."}
+        except Exception as e:
+            _logger.error("Failed to send OTP email: %s", str(e))
+            return {"status": "error", "message": "User created but OTP email failed."}
 
         # sms_log = request.env['auth.otp.log'].sudo().create(dict(log_vals, medium='sms'))
         # send_sms(user.phone, f"Your OTP code is {otp}")        
@@ -335,23 +319,15 @@ class AuthController(http.Controller):
         })
 
         # Send email using template, overriding recipient
-        mail_values = {
-            'subject': "Forgot Password OTP Code",
-            'body_html': f"<p>Hello,</p><p>Your OTP code is: <b>{otp}</b></p>",
-            'email_to': email,
-            'email_from': user.email or "no-reply@greenedtech.com",
-        }
-        mail = request.env['mail.mail'].sudo().create(mail_values)
-        mail.sudo().send()
-        # template = request.env.ref('odoo_elearning_auth.template_auth_otp')
-        # template.sudo().send_mail(
-        #     email_log.id,
-        #     force_send=True,
-        #     email_values={'email_to': email}
-        # )
-        # _logger.info("OTP email sent to %s", user.email)
-        # _logger.info("Created user %s and sent OTP", user.email)
-        # _logger.info(template)
+        template = request.env.ref('odoo_elearning_auth.template_auth_otp')
+        template.sudo().send_mail(
+            email_log.id,
+            force_send=True,
+            email_values={'email_to': email}
+        )
+        _logger.info("OTP email sent to %s", user.email)
+        _logger.info("Created user %s and sent OTP", user.email)
+        _logger.info(template)
 
         # Create OTP log (sms placeholder)
         # sms_log = request.env['auth.otp.log'].sudo().create({
